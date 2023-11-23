@@ -1,0 +1,22 @@
+
+// Prisma schema for MongoDB
+
+generator client {
+ provider = "prisma-client-js"
+}
+
+datasource db {
+ provider = "mongodb"
+ url      = env("DATABASE_URL")
+}
+
+model Url {
+ id        String @id @default(auto()) @map("_id") @db.ObjectId
+ url       String 
+ hash      String @unique
+ urlShort String 
+ create_at DateTime @default(now()) 
+
+ // Map the model to a different collection name in MongoDB
+ @@map("urlShorten")
+}
