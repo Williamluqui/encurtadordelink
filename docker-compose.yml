@@ -1,0 +1,40 @@
+
+version: '3.8'
+
+services:
+  app:
+    container_name: encurtadordelink
+    build: . 
+    command: npm start
+    env_file:
+      - .env
+    ports:
+      - "3333:3333"
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src
+    networks:
+      - node-network  
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"   
+        max-size: "10m" 
+    restart: always
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+    networks:
+      - node-network
+
+volumes:
+  dbdata6:
+
+networks:
+  node-network:
+    driver: bridge
