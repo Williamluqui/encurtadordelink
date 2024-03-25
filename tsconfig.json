@@ -1,21 +1,24 @@
 {
-	"compilerOptions": {
+		"display": "Node 20",
+		"_version": "20.1.0",
+		"compilerOptions": {
 		"baseUrl": "./src",
-		"moduleResolution": "node",
+		
+		"moduleResolution": "node16",
 		"allowSyntheticDefaultImports": true,
 		"noEmit": false,
 		"noEmitOnError": false,
 		"alwaysStrict": true,
 		"esModuleInterop": true,
-		"module": "commonjs",
+		"module": "Node16",
 		"noImplicitAny": true,
-		"target": "ES6",
+		"target": "ES2022",
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"outDir": "./dist",
 		"rootDir": "./src/",
 		"sourceMap": true,
-		"lib": ["es6", "dom", "es2017", "es7"],
+		"lib": ["ES2022"],
 		"resolveJsonModule": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true

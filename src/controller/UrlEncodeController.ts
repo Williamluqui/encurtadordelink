@@ -16,13 +16,13 @@ export async function shorten(
     const url = String(req.body.url);
     const shortenUrl = shortid.generate();
 
-    const urlBodyAndShortUrl = `${process.env.BASE_URL_DEV}/${shortenUrl}`;
-
     if (!validateUrl(url))
       throw new ErrorHandler(
         400,
         "Long URL should start with 'http://' or 'https://'"
       );
+
+    const urlBodyAndShortUrl = `${process.env.BASE_URL_DEV}/${shortenUrl}`;
 
     const data = await CreateUrlHash(url, shortenUrl, urlBodyAndShortUrl);
 
@@ -43,9 +43,10 @@ export async function decriptUrl(
     const hashUrl = String(req.params.hashUrl);
 
     const urlHash = await FindHash(hashUrl);
-    if (!urlHash[0]) throw new ErrorHandler(400, "Inválid url or url empty");
+    console.log(urlHash);
+    if (!urlHash) throw new ErrorHandler(400, "Inválid url or url empty");
 
-    return res.redirect(urlHash[0].url);
+    return res.redirect(urlHash);
   } catch (error) {
     console.error(error);
     const { statusCode, message } = errorHandlerCatch(error);

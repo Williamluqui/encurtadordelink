@@ -1,23 +1,23 @@
 {
   "name": "encurtadordelink",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Projeto de encurtador de link com node , mongoDB",
   "main": "src/index.js",
   "scripts": {
-    "build": "tsc -w",
+    "build": "tsc -w ",
     "start": "node ./dist/index.js",
-    "dev": "nodemon ./dist/index.js",
-    "migrate": "npx prisma migrate dev",
-    "generate": "npx prisma generate",
+    "nodemon": "nodemon ./dist/index.js",
+    "dev": "concurrently \"npm:build\" \"npm:nodemon\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "william",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.11.0",
+    "concurrently": "^8.2.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3",
     "shortid": "^2.2.16"
   },
   "devDependencies": {
@@ -27,7 +27,7 @@
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.53.0",
     "nodemon": "^3.0.1",
-    "prisma": "^5.11.0",
+    "tsx": "^4.7.1",
     "typescript": "^5.2.2"
   }
 }

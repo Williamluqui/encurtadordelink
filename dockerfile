@@ -6,7 +6,6 @@ ENV NODE_VERSION 20.11.1
 
 RUN apk update && apk upgrade
 
-
 WORKDIR /usr/app
 
 COPY package*.json ./
