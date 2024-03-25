@@ -13,30 +13,30 @@ services:
     volumes:
       - 'mongodb:/data/db'
 
+     
+  app:
+    container_name: encurtadordelink
+    build: .  
+    command: npm start
+    env_file:
+      - .env
+    ports:
+      - "3333:3333"
+    
+    volumes:
+      - .:/usr/src
+    links:
+      - mongo
+    depends_on:
+      - mongo 
+      
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"   
+        max-size: "10m" 
+    restart: always  
+
 volumes:
     mongodb:
-      driver: local      
-  # app:
-  #   container_name: encurtadordelink
-  #   build: .  
-  #   command: npm start
-  #   networks:
-  #     - app-tier
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "3333:3333"
-    
-  #   volumes:
-  #     - .:/usr/src
-  #   links:
-  #     - mongodb 
-  #   depends_on:
-  #     - mongodb  
-      
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-file: "5"   
-  #       max-size: "10m" 
-  #   restart: always  
+      driver: local 

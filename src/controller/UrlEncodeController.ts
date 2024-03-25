@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import shortid from "shortid";
 
-import { Url } from "../@types/url.interface";
 import { ErrorHandler } from "../errors/errorHandler";
 import { errorHandlerCatch } from "../errors/errorCatch";
 import { CreateUrlHash, FindHash } from "../model/urlModel";
@@ -43,10 +42,9 @@ export async function decriptUrl(
     const hashUrl = String(req.params.hashUrl);
 
     const urlHash = await FindHash(hashUrl);
-    console.log(urlHash);
     if (!urlHash) throw new ErrorHandler(400, "Inválid url or url empty");
 
-    return res.redirect(urlHash);
+    return res.redirect(urlHash.url);
   } catch (error) {
     console.error(error);
     const { statusCode, message } = errorHandlerCatch(error);

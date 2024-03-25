@@ -1,4 +1,4 @@
-import { Url } from "../@types/url.interface";
+
 import { SchemaUrlShort } from "../mongoose.schema/schema";
 
 export async function CreateUrlHash(url: string, hash: string, urlShort: string) {
@@ -7,6 +7,7 @@ export async function CreateUrlHash(url: string, hash: string, urlShort: string)
 }
 
 export async function FindHash(hashUrl: string) {
-  const findHash = await SchemaUrlShort.findOne({ hashUrl });
+  const findHash = await SchemaUrlShort.findOne({ hash: hashUrl });
+
   return findHash;
 }
